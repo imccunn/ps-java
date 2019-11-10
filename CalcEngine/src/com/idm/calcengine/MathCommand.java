@@ -1,6 +1,6 @@
 package com.idm.calcengine;
 
-public enum MathCommand {
+enum MathCommand {
     Add,
     Subtract,
     Multiply,

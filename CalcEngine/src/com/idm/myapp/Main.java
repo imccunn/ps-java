@@ -1,4 +1,16 @@
-package com.idm.calcengine;
+package com.idm.myapp;
+
+import com.idm.calcengine.Adder;
+import com.idm.calcengine.CalculateBase;
+import com.idm.calcengine.CalculateHelper;
+import com.idm.calcengine.Divider;
+import com.idm.calcengine.DynamicHelper;
+import com.idm.calcengine.InvalidStatementException;
+import com.idm.calcengine.MathEquation;
+import com.idm.calcengine.MathProcessing;
+import com.idm.calcengine.Multiplier;
+import com.idm.calcengine.PowerOf;
+import com.idm.calcengine.Subtractor;
 
 public class Main {
 
@@ -8,18 +20,43 @@ public class Main {
 //        useCalculatorBase();
 
         // 10MoreAboutDataTypes
+//        String[] statements = {
+//                "add 1.0",
+//                "add xx 25.0",
+//                "addX 0.0 0.0",
+//                "divide 100.0 50.0",
+//                "add 25.0 92.0",
+//                "subtract 225.0 17.0",
+//                "multiply 11.0 3.0"
+//        };
+//
+//        CalculateHelper helper = new CalculateHelper();
+//
+//        for (String statement : statements) {
+//            try {
+//                helper.process(statement);
+//                System.out.println(helper); // by default will print object hash code
+//            } catch (InvalidStatementException ise) {
+//                System.out.println(ise.getMessage());
+//                if (ise.getCause() != null) {
+//                    System.out.println("  Original exception: " + ise.getCause().getMessage());
+//                }
+//            }
+//        }
+
         String[] statements = {
-                "divide 100.0 50.0",
                 "add 25.0 92.0",
-                "subtract 225.0 17.0",
-                "multiply 11.0 3.0"
+                "power 5.0 2.0"
         };
 
-        CalculateHelper helper = new CalculateHelper();
+        DynamicHelper helper = new DynamicHelper(new MathProcessing[] {
+                new Adder(),
+                new PowerOf()
+        });
 
         for (String statement : statements) {
-            helper.process(statement);
-            System.out.println(helper); // by default will print object hash code
+            String output = helper.process(statement);
+            System.out.println(output);
         }
 
     }
